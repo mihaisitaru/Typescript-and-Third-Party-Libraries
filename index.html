@@ -5,16 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Typescript and Third-Party Libraries</title>
-</head>
-<body>
-  <button>Click</button>
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+    <script src="./systemjs-0.21.5/system.js"></script>
+  </head>
+  <body>
+    <div id="app">Changed with jQuery</div>
   <script>
-    
+      SystemJS.config({
+          map: {
+            "jQuery": "node_modules/jquery/dist/jquery.min.js"
+          },
+          baseUrl: '/',
+          packages: {
+              '/': {
+                  transpiler: 'typescript',
+                  defaultExtension: 'js'
+              }
+          }
+      });
+  
+      SystemJS.import('app.js');
   </script>
-  <script src="app.js"></script>
 </body>
 </html>
